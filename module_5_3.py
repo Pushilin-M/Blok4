@@ -1,9 +1,9 @@
 
 class House:
+
     def __init__(self, name, number_of_floors):
         self.name = name
         self.number_of_floors = number_of_floors
-        isinstance(self.number_of_floors, int)
 
     def go_to(self, nev_floor):
         self.nev_floor = nev_floor
@@ -20,32 +20,42 @@ class House:
         return f'Название : {self.name}, колличество этажей : {self.number_of_floors}'
 
     def __eq__(self, other):
-        return self.number_of_floors == other
+        if isinstance(other, int) or isinstance(other, House):
+            return self.number_of_floors == other
 
     def __lt__(self, other):
-        return self.number_of_floors < other
+        if isinstance(other, int) or isinstance(other, House):
+            return self.number_of_floors < other
 
     def __le__(self, other):
-        return self.number_of_floors <= other
+        if isinstance(other, int) or isinstance(other, House):
+            return self.number_of_floors <= other
 
     def __gt__(self, other):
-        return self.number_of_floors > other
+        if isinstance(other, int) or isinstance(other, House):
+            return self.number_of_floors > other
 
     def __ge__(self, other):
-        return self.number_of_floors >= other
+        if isinstance(other, int) or isinstance(other, House):
+            return self.number_of_floors >= other
 
     def __ne__(self, other):
-        return self.number_of_floors != other
+        if isinstance(other, int) or isinstance(other, House):
+            return self.number_of_floors != other
 
     def __add__(self, value):
-        self.number_of_floors = self.number_of_floors + value
-        return self
+        if isinstance(value, int) or isinstance(value, House):
+            self.number_of_floors = self.number_of_floors + value
+            return self
+        else:
+            print(f' ОШИБКА - "{value}"')
 
     def __radd__(self, value):
         return self.__add__(value)
 
     def __iadd__(self, value):
         return self.__add__(value)
+
 
 
 h1 = House('ЖК Речной', 10)
